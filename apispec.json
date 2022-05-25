@@ -32,7 +32,7 @@
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schema/category"
+                                                "$ref": "#/components/schemas/category"
                                             }
                                         }
                                     }
@@ -73,7 +73,44 @@
                                             "type": "string"
                                         },
                                         "data":{
-                                            "$ref": "#/components/schema/category"
+                                            "$ref": "#/components/schemas/category"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/categories/{categoriesId}": {
+            "get":{
+                "tags": ["Categories API"],
+                "summary": "Get Category by ID",
+                "description": "Get Category by ID",
+                "parameters": [
+                    {
+                        "name": "categoryId",
+                        "in": "path",
+                        "description": "Category Id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success Get Category",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        "code":{
+                                            "type": "number"
+                                        },
+                                        "status":{
+                                            "type": "string"
+                                        },
+                                        "data":{
+                                            "$ref": "#/components/schemas/category"
                                         }
                                     }
                                 }
