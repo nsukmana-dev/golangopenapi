@@ -48,12 +48,7 @@
                     "content": {
                         "application/json":{
                             "schema":{
-                                "type": "object",
-                                "properties": {
-                                    "name":{
-                                        "type": "string"
-                                    }
-                                }
+                                "$ref": "#/components/schemas/categorycreateorupdate"
                             }
                         }
                     }
@@ -118,12 +113,58 @@
                         }
                     }
                 }
+            },
+            "put":{
+                "tags": ["Category API"],
+                "summary": "Update category by Id",
+                "description": "Update category by Id",
+                "parameters": [
+                    {
+                        "name": "categoryId",
+                        "in": "path",
+                        "description": "Category Id"
+                    }
+                ],
+                "requestBody":{
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "name":{
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success Get Category",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "$ref": "#/components/schemas/categorycreateorupdate"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     },
     "components": {
         "schemas": {
             "category":{
+                "type": "object",
+                "properties": {
+                    "name":{
+                        "type": "string"
+                    }
+                }
+            },
+            "categorycreateorupdate":{
                 "type": "object",
                 "properties": {
                     "id":{
