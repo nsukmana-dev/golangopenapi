@@ -115,7 +115,7 @@
                 }
             },
             "put":{
-                "tags": ["Category API"],
+                "tags": ["Categories API"],
                 "summary": "Update category by Id",
                 "description": "Update category by Id",
                 "parameters": [
@@ -146,6 +146,38 @@
                             "application/json":{
                                 "schema":{
                                     "$ref": "#/components/schemas/categorycreateorupdate"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete":{
+                "tags": ["Categories API"],
+                "summary": "Delete Category by ID",
+                "description": "Delete Category by ID",
+                "parameters": [
+                    {
+                        "name": "categoryId",
+                        "in": "path",
+                        "description": "Category Id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success Delete Category",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        "code":{
+                                            "type": "number"
+                                        },
+                                        "status":{
+                                            "type": "string"
+                                        }
+                                    }
                                 }
                             }
                         }
