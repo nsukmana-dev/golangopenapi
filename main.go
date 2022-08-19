@@ -5,6 +5,7 @@ import (
 	"golangopenapi/controller"
 	"golangopenapi/exception"
 	"golangopenapi/helper"
+	"golangopenapi/middleware"
 	"golangopenapi/repository"
 	"golangopenapi/service"
 	"net/http"
@@ -35,7 +36,7 @@ func main() {
 
 	server := http.Server{
 		Addr:    "localhost:3000",
-		Handler: router,
+		Handler: middleware.NewAuthMiddleware(router),
 	}
 
 	err := server.ListenAndServe()
