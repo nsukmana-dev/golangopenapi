@@ -3,7 +3,6 @@ package main
 import (
 	"golangopenapi/app"
 	"golangopenapi/controller"
-	"golangopenapi/exception"
 	"golangopenapi/helper"
 	"golangopenapi/middleware"
 	"golangopenapi/repository"
@@ -13,7 +12,6 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 
 	"github.com/go-playground/validator/v10"
-	"github.com/julienschmidt/httprouter"
 )
 
 func main() {
@@ -22,17 +20,9 @@ func main() {
 	validate := validator.New()
 	categoryRepository := repository.NewCategoryRepository()
 	categoryService := service.NewCategoryService(categoryRepository, db, validate)
-	CategoryController := controller.NewCategoryController(categoryService)
+	categoryController := controller.NewCategoryController(categoryService)
 
-	router := httprouter.New()
-
-	router.GET("/api/categories", CategoryController.FindAll)
-	router.GET("/api/categories/:categoryId", CategoryController.FindById)
-	router.POST("/api/categories", CategoryController.Create)
-	router.PUT("/api/categories/:categoryId", CategoryController.Update)
-	router.DELETE("/api/categories/:categoryId", CategoryController.Delete)
-
-	router.PanicHandler = exception.ErrorHandler
+	router := app.NewRouter(categoryController)
 
 	server := http.Server{
 		Addr:    "localhost:3000",
